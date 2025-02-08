@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.7.0/chart.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen flex">
+        <!-- Sidebar -->
+        <aside class="bg-blue-800 text-white w-64 flex-shrink-0 hidden md:block">
+            <div class="p-4">
+                <h1 class="text-2xl font-bold">Dashboard</h1>
+            </div>
+            <nav class="mt-8">
+                <a href="#" class="block py-2.5 px-4 bg-blue-900">
+                    <span class="block">Dashboard</span>
+                </a>
+                <a href="#" class="block py-2.5 px-4 hover:bg-blue-900">
+                    <span class="block">Analytics</span>
+                </a>
+                <a href="#" class="block py-2.5 px-4 hover:bg-blue-900">
+                    <span class="block">Reports</span>
+                </a>
+                <a href="#" class="block py-2.5 px-4 hover:bg-blue-900">
+                    <span class="block">Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1">
+            <!-- Top Navigation -->
+            <header class="bg-white shadow">
+                <div class="px-4 py-4 flex justify-between items-center">
+                    <button class="md:hidden">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    <div class="flex items-center">
+                        <span class="text-gray-800">DEV RANA</span>
+                        <img src="Dev_Rana.jpeg" alt="Profile" class="w-8 h-8 rounded-full ml-4">
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="p-6">
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h3 class="text-gray-500 text-sm font-medium">Total Revenue</h3>
+                        <p class="text-2xl font-bold text-gray-900">$24,560</p>
+                        <span class="text-green-500 text-sm">+2.5% from last month</span>
+                    </div>
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h3 class="text-gray-500 text-sm font-medium">Active Users</h3>
+                        <p class="text-2xl font-bold text-gray-900">1,234</p>
+                        <span class="text-green-500 text-sm">+15% from last month</span>
+                    </div>
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h3 class="text-gray-500 text-sm font-medium">New Orders</h3>
+                        <p class="text-2xl font-bold text-gray-900">450</p>
+                        <span class="text-red-500 text-sm">-5% from last month</span>
+                    </div>
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h3 class="text-gray-500 text-sm font-medium">Customer Satisfaction</h3>
+                        <p class="text-2xl font-bold text-gray-900">98%</p>
+                        <span class="text-green-500 text-sm">+1% from last month</span>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" >
+                    <div class="bg-white rounded-lg shadow p-6" style="height: 300px;">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">Revenue Overview</h3>
+                        <canvas id="revenueChart" height="300"></canvas>
+                    </div>
+                    <div class="bg-white rounded-lg shadow p-6" style="height: 300px;">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">User Activity</h3>
+                        <canvas id="usersChart" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Revenue Chart
+        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(revenueCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Revenue',
+                    data: [15000, 21000, 18000, 24000, 23000, 24500],
+                    borderColor: 'rgb(59, 130, 246)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        // Users Chart
+        const usersCtx = document.getElementById('usersChart').getContext('2d');
+        new Chart(usersCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Active Users',
+                    data: [800, 950, 1100, 1250, 1400, 1234],
+                    backgroundColor: 'rgb(59, 130, 246)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    </script>
+</body>
+</html>
